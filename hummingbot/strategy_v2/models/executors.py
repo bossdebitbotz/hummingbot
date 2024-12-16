@@ -121,3 +121,14 @@ class TrackedOrder:
             return self.order.is_filled
         else:
             return False
+
+    def to_json(self):
+        return {
+            "order_id": self._order_id,
+            "order": self.order.to_json() if self.order else None,
+            "creation_timestamp": self.creation_timestamp,
+            "price": str(self.price) if self.price else None,
+            "last_update_time": self.last_update_time,
+            "average_executed_price": str(self.average_executed_price),
+            "executed_amount_base": str(self.executed_amount_base)
+        }
